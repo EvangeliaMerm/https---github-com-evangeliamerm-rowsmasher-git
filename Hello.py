@@ -31,10 +31,11 @@ def run():
     uploaded_file = st.file_uploader("Choose a file", type=['csv', 'xlsx'], accept_multiple_files=False)
    
     if st.button("Submit"):
-    if uploaded_file and url:
-        st.success("File submitted successfully!")
-    else:
-        st.warning("Please upload a file.")
+        if uploaded_file:
+            st.success("File submitted successfully!")
+        else:
+            st.warning("Please upload a file.")
+
 
 
 
