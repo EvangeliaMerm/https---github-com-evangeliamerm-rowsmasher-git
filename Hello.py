@@ -13,28 +13,52 @@
 # limitations under the License.
 
 import streamlit as st
-from streamlit.logger import get_logger
+import csv
 
-LOGGER = get_logger(__name__)
+def process_uploaded_file(uploaded_file):
+    # Read the file content
+    file_content = uploaded_file.getvalue().decode("utf-8").splitlines()
 
+    count = 0
+    header = file_content[0]
+    limit = 5000
+    data = []
+    file_counter = 0
+    output_files = []
 
-def run():
-    st.set_page_config(
-        page_title="Hello",
-        page_icon="👋",
-    )
+    for row in file_content:
+        if count > limit:
+            output_filename = f"output_{file_counter}.csv"
+            with open(output_filename, "w") as f:
+                # ...[the same processing code you provided, just skipping for brevity]...
 
-    st.write("# Welcome to the awesome Row Smasher! 👋")
+            output_files.append(output_filename)
+            count = 0
+            file_counter += 1
+            data = []
+        else:
+            data.append(row)
+            count += 1
 
-    st.image("https://media2.giphy.com/media/0qiwSa0SwH8DTNjQyR/giphy.gif?cid=ecf05e47hw2vwfrxcc51m5i0sm7am01i1ana5kw9ng3q7dnj&ep=v1_gifs_search&rid=giphy.gif&ct=g", use_column_width=True)
-  
-    uploaded_file = st.file_uploader("Choose a file", type=['csv', 'xlsx'], accept_multiple_files=False)
-   
-    if st.button("Submit"):
-    if uploaded_file and url:
-        st.success("File submitted successfully!")
-    else:
-        st.warning("Please upload a file.")
+    return output_files
+
+st.set_page_config(page_title="Row Smasher")
+
+st.header("Row Smasher")
+
+uploaded_file = st.file_uploader("Choose a file", type=['csv'], accept_multiple_files=False)
+
+if uploaded_file:
+    output_files = process_uploaded_file(uploaded_file)
+    for file in output_files:
+        with open(file, "r") as f:
+            btn = st.download_button(
+                label=f"Download {file}",
+                data=f,
+                file_name=file,
+                mime="text/csv"
+            )
+
 
 
 
