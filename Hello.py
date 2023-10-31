@@ -29,6 +29,13 @@ def run():
     st.image("https://media2.giphy.com/media/0qiwSa0SwH8DTNjQyR/giphy.gif?cid=ecf05e47hw2vwfrxcc51m5i0sm7am01i1ana5kw9ng3q7dnj&ep=v1_gifs_search&rid=giphy.gif&ct=g", use_column_width=True)
   
     uploaded_file = st.file_uploader("Choose a file", type=['csv', 'xlsx'], accept_multiple_files=False)
+   
+    if st.button("Submit"):
+    if uploaded_file and url:
+        st.success("File submitted successfully!")
+    else:
+        st.warning("Please upload a file.")
+
 
 
 
