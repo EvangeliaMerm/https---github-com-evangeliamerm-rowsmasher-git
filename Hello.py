@@ -14,9 +14,10 @@
 
 import streamlit as st
 from streamlit.logger import get_logger
+import pandas as pd
+import io
 
 LOGGER = get_logger(__name__)
-
 
 def run():
     st.set_page_config(
@@ -32,17 +33,21 @@ def run():
    
     if st.button("Submit"):
         if uploaded_file:
+            # Assuming it's a CSV for simplicity. If it's an 'xlsx', you might need to adjust.
+            df = pd.read_csv(uploaded_file)
+            
+            # This is where you can apply your data transformations (currently, just copying the file)
+            processed_data = df.copy()
+
+            # Convert processed dataframe to a CSV for downloading
+            csv = processed_data.to_csv(index=False)
+            b64 = base64.b64encode(csv.encode()).decode()  # some strings <-> bytes conversions necessary here
+            href = f'<a href="data:file/csv;base64,{b64}" download="processed_data.csv">Click to download the processed file</a>'
+
             st.success("File submitted successfully!")
+            st.markdown(href, unsafe_allow_html=True)
         else:
             st.warning("Please upload a file.")
-
-
-
-
-
-
-
-
 
 if __name__ == "__main__":
     run()
