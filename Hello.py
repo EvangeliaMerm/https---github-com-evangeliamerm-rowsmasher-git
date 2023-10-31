@@ -41,7 +41,7 @@ def run():
             # This is where you can apply your data transformations (currently, just copying the file)
             processed_data = df.copy()
 
-            # Convert processed dataframe to a CSV for downloading
+            #Convert processed dataframe to a CSV for downloading
             csv = processed_data.to_csv(index=False)
             b64 = base64.b64encode(csv.encode()).decode()  # some strings <-> bytes conversions necessary here
             href = f'<a href="data:file/csv;base64,{b64}" download="processed_data.csv">Click to download the processed file</a>'
@@ -50,6 +50,5 @@ def run():
             st.markdown(href, unsafe_allow_html=True)
         else:
             st.warning("Please upload a file.")
-
 if __name__ == "__main__":
     run()
