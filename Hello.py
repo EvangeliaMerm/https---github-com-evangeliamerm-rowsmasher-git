@@ -16,6 +16,8 @@ import streamlit as st
 from streamlit.logger import get_logger
 import pandas as pd
 import io
+import base64
+
 
 LOGGER = get_logger(__name__)
 
