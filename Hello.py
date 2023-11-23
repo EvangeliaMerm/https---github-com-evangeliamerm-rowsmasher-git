@@ -4,11 +4,21 @@ import io
 import csv
 import base64
 
+# The set_page_config call must go at the top.
+st.set_page_config(page_title="Row Smasher", page_icon="👋")
+
+# Then, you can include your custom styles to hide elements.
 st.markdown("""
     <style>
-        .css-1d391kg {display: none;}
+        /* This hides the hamburger menu in the top right corner */
+        header > div:first-child {display: none !important;}
+        /* This hides the Streamlit footer */
+        .css-1kyxreq {display: none !important;}
+        /* Add additional styles here if needed */
     </style>
     """, unsafe_allow_html=True)
+
+# Rest of your Streamlit app code...
 
 
 def split_csv(file, limit=5000):
