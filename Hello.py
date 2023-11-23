@@ -39,7 +39,7 @@ def run():
     st.set_page_config(page_title="Row Smasher", page_icon="👋")
     st.write("# Welcome to the awesome Row Smasher! 👋")
 
-    st.image("https://cdn-bncbg.nitrocdn.com/zkrzgWkGbJXDFWAEmKwkGOxznlRoELmO/assets/desktop/source/rev-4a70894/YqF4P3k14O5jyskQEj0Wp5g0_hYpsPo-A0kXC9Rd_6wlQYZmQDzUS3OLUzelXtqKlP3Kog8fkSUPatcmqDidwD97LTMZekm78iET5dL2sOzDeTuyu1r-m2TvjvyzfzmKg3UvOXJbF-4ooc66xRHhGLc", use_column_width=True)
+    st.image("https://izzismith.com/wp-content/uploads/2019/09/i-think-you-forgot-something-e1605654514726.jpg", use_column_width=True)
 
     uploaded_file = st.file_uploader("Choose a file", type=['csv'], accept_multiple_files=False)
 
