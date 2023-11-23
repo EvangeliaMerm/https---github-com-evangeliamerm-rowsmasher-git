@@ -1,8 +1,8 @@
 import streamlit as st
 import pandas as pd
 import io
-import base64
 import csv
+import base64
 
 def split_csv(file, limit=5000):
     """Split a CSV file into multiple files based on a row limit."""
@@ -10,7 +10,10 @@ def split_csv(file, limit=5000):
     data = []
     header = None
 
-    for row in csv.reader(file):
+    # Convert BytesIO to TextIOWrapper for csv.reader compatibility
+    text_io_wrapper = io.TextIOWrapper(file)
+
+    for row in csv.reader(text_io_wrapper):
         if not header:
             header = row
             continue
@@ -40,11 +43,14 @@ def run():
 
     if st.button("Submit"):
         if uploaded_file:
-            for file_counter, header, data in split_csv(uploaded_file, limit=5000):
-                df = pd.DataFrame(data, columns=header)
-                st.markdown(create_download_link(df, f"processed_data_{file_counter}"), unsafe_allow_html=True)
+            try:
+                for file_counter, header, data in split_csv(uploaded_file, limit=5000):
+                    df = pd.DataFrame(data, columns=header)
+                    st.markdown(create_download_link(df, f"processed_data_{file_counter}"), unsafe_allow_html=True)
 
-            st.success("Files processed and ready for download.")
+                st.success("Files processed and ready for download.")
+            except Exception as e:
+                st.error(f"An error occurred: {e}")
         else:
             st.warning("Please upload a file.")
 
