@@ -39,7 +39,7 @@ def run():
     st.set_page_config(page_title="Row Smasher", page_icon="👋")
     st.write("# Welcome to the awesome Row Smasher! 👋")
 
-    st.image("https://izzismith.com/wp-content/uploads/2019/09/i-think-you-forgot-something-e1605654514726.jpg", use_column_width=False)
+    st.image("https://izzismith.com/wp-content/uploads/2019/09/john-mu-content-e1605655044744.png", use_column_width=False)
 
     uploaded_file = st.file_uploader("Choose a file", type=['csv'], accept_multiple_files=False)
 
