@@ -3,6 +3,7 @@ import pandas as pd
 import io
 import csv
 import base64
+
 # Hide the default Streamlit sidebar with the page links
 st.markdown("""
     <style>
@@ -11,6 +12,7 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 # Rest of your Streamlit app code below...
+
 def split_csv(file, limit=5000):
     """Split a CSV file into multiple files based on a row limit."""
     file_counter = 0
