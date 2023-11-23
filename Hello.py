@@ -17,9 +17,7 @@ st.markdown("""
         /* Add additional styles here if needed */
     </style>
     """, unsafe_allow_html=True)
-
 # Rest of your Streamlit app code...
-
 
 def split_csv(file, limit=5000):
     """Split a CSV file into multiple files based on a row limit."""
